@@ -10,8 +10,8 @@ void test()//ÔöÉ¾²âÊÔ
 	SlistPrint(head);*/
 
 	SlNode* head = NULL;
-	SlistPushBack(&head, 1);
-	SlistPushBack(&head, 2);
+	SlistPushBack(head, 1);
+	SlistPushBack(head, 2);
 	SlistPrint(head);
 }
 

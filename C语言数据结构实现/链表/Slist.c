@@ -34,7 +34,7 @@ void SlistPushBack(SlNode* head, SlNode** tail, SlistDataType x)//Î²²å
 */
 
 
-void SlistPushBack(SlNode** phead, SlistDataType x)//Î²²å
+void SlistPushBack(SlNode* phead, SlistDataType x)//Î²²å
 {
 	SlNode* NewNode = (SlNode*)malloc(sizeof(SlNode));
 	if (NewNode == NULL)
@@ -44,10 +44,10 @@ void SlistPushBack(SlNode** phead, SlistDataType x)//Î²²å
 	}
 	NewNode->data = x;
 	NewNode->next = NULL;
-	SlNode* tail =(*phead);
-	if ((*phead) == NULL)
+	SlNode* tail =phead;
+	if (phead== NULL)
 	{
-		(*phead) = NewNode;
+		phead = NewNode;
 	}
 	else
 	{

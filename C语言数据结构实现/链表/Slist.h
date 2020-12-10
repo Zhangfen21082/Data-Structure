@@ -12,7 +12,7 @@ typedef struct SlistNode
 
 //ÕÍ√¿void SlistPushBack(SlNode* head,SlNode** tail, SlistDataType x);//Œ≤≤Â
 
-void SlistPushBack(SlNode** head, SlistDataType x);//Œ≤≤Â
+void SlistPushBack(SlNode* phead, SlistDataType x);//Œ≤≤Â
 void SlistPopBack(SlNode* head);//Œ≤…æ
 void SlistPushFront(SlNode* head,SlistDataType x);//Õ∑≤Â
 void SlistPopFront(SlNode* head);//Õ∑…æ
