@@ -9,58 +9,60 @@
 //	(*tail)->next = creat;
 //	(*tail) = creat;
 //}
-/*
-ÍêÃÀ
-void SlistPushBack(SlNode* head, SlNode** tail, SlistDataType x)//Î²²å
+
+void SlistPushBack(SlNode** phead, SlNode** ptail, SlistDataType x)//Î²²å
 {
 
 	SlNode* NewNode = (SlNode*)malloc(sizeof(SlNode));
 	NewNode->data = x;
 	NewNode->next = NULL;
 
-	if (head == NULL)
+	if ((*phead) == NULL)
 	{
-		(*tail) = NewNode;
-		tail = &NewNode;
+		(*phead)= NewNode;
+		(*ptail) = NewNode;
 	}
 	else
 	{
-		(*tail)->next = NewNode;
-		tail = NewNode;
+		(*ptail)->next = NewNode;
+		(*ptail) = NewNode;
 	}
 	
 }
 
-*/
 
 
-void SlistPushBack(SlNode* phead, SlistDataType x)//Î²²å
-{
-	SlNode* NewNode = (SlNode*)malloc(sizeof(SlNode));
-	if (NewNode == NULL)
-	{
-		printf("ÉêÇë½áµãÊ§°Ü\n");
-		exit(-1);
-	}
-	NewNode->data = x;
-	NewNode->next = NULL;
-	SlNode* tail =phead;
-	if (phead== NULL)
-	{
-		phead = NewNode;
-	}
-	else
-	{
-		while (tail->next != NULL)
-		{
-			tail = tail->next;
-		}
-		tail->next=NewNode;
-	}
-	
+
+//void SlistPushBack(SlNode** phead, SlistDataType x)//Î²²å
+//{
+//	SlNode* NewNode = (SlNode*)malloc(sizeof(SlNode));
+//	if (NewNode == NULL)
+//	{
+//		printf("ÉêÇë½áµãÊ§°Ü\n");
+//		exit(-1);
+//	}
+//	NewNode->data = x;
+//	NewNode->next = NULL;
+//	SlNode* tail =(*phead);
+//	if ((*phead)== NULL)
+//	{
+//		(*phead) = NewNode;
+//	}
+//	else
+//	{
+//		while (tail->next != NULL)
+//		{
+//			tail = tail->next;
+//		}
+//		tail->next=NewNode;
+//	}
+//	
+//
+//
+//}
 
 
-}
+
 void SlistPopBack(SlNode* head);//Î²É¾
 void SlistPushFront(SlNode* head, SlistDataType x);//Í·²å
 void SlistPopFront(SlNode* head);//Í·É¾
