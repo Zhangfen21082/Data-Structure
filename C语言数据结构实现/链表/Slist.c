@@ -10,7 +10,7 @@
 //	(*tail) = creat;
 //}
 
-void SlistPushBack(SlNode** phead, SlNode** ptail, SlistDataType x)//Î²²å
+void SlistPushBack(SlNode** phead, SlNode** ptail, SlistDataType x)//Î²²å·¨
 {
 
 	SlNode* NewNode = (SlNode*)malloc(sizeof(SlNode));
