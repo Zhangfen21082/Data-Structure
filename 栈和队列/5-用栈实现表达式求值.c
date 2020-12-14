@@ -10,7 +10,7 @@ typedef struct
 }Sqstack1;
 typedef struct
 {
-	char data[maxSize];//用来定义运算符栈，运算符用char型
+	char data[maxSize];//用来定义运算符栈，运算符用char型   Z X去
 	int top;
 }Sqstack2;
 
