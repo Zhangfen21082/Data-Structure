@@ -1,8 +1,8 @@
 #include <stdio.h>
 #define maxsize 100
 #include <stdlib.h>
-#define INF 10000
-//1：编写一个算法，将一个无向图的连接矩阵转换邻接表
+#define INF 1000
+/
 //typedef struct ArcNode
 //{
 //	int adjv;
