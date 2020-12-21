@@ -12,7 +12,7 @@
 //typedef struct VNode
 //{
 //	int data;
-//	ArcNode* first;
+//	ArcNode* first;¹æ»®
 //
 //}VNode;
 //
