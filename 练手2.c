@@ -12,7 +12,7 @@
 //typedef struct VNode
 //{
 //	int data
-//	ArcNode* first;规划生成树
+//	ArcNode* first;规划生成
 //
 //}VNode;
 //
