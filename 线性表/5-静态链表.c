@@ -12,7 +12,7 @@ typedef struct
 	int data;
 	int next;//注意next不是指针型
 }SLNode;
-//利用数组存储静态链表
+//利用数组存储静态链
 SLNode SLink[maxSize];
 
 //静态链表的操作
