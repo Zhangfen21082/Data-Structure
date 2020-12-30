@@ -10,7 +10,7 @@ typedef struct//顶点类型
 }VertexType;
 typedef struct
 {
-	float edges[maxsize][maxsize];//使用邻接矩阵来存储图
+	float edges[maxsize][maxsize];//使用邻接矩阵来存储
 	int n, e;//顶点数和边数
 	VertexType vex[maxsize];//以数组方式存放所有结点
 }MGraph;
