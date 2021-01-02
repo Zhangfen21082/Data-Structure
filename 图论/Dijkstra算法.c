@@ -3,7 +3,7 @@
 #define INF 10000000
 /*
 	迪杰斯特拉算法需要用到三个数组
-*/
+*
 //带权图
 typedef struct
 {
