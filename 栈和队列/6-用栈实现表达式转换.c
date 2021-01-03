@@ -5,7 +5,7 @@ typedef struct
 	char data[maxSize];
 	int top;
 }Sqstack;
-int getPriority(char op)//判断运算符优先级
+int getPriority(char op)//判断运算符优先
 {
 	if (op == '+' || op == '-')
 		return 0;
