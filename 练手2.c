@@ -7,7 +7,7 @@
 //{
 //	int adjv;
 //	struct ArcNode* next;
-//}ArcNode;
+//}ArcNode
 //
 //typedef struct VNode
 //{
