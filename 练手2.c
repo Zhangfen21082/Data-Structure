@@ -10,7 +10,7 @@
 //}ArcNod
 
 //typedef struct VNode
-//{
+//
 //	int data
 //	ArcNode* first;规划生成
 //
