@@ -1,149 +1,112 @@
-#include "SeqList.h"
+#include "Seqlist.h"
 
-void SeqListInit(SeqList* ps)//初始化
+
+void Seqlistinit(Seqlist* ps)
 {
-	/*也可以这样申请
-	s.Size = 0;
-	s.Array = NULL;
-	s.Capacity = 0;
-	*/
-	ps->Array = (SLDataType*)malloc(sizeof(SLDataType) * 4);
-	if (ps->Array == NULL)
-	{
-		printf("申请失败\n");
-		exit(-1);
-	}
-	ps->Size = 0;
-	ps->Capacity = 4;
+	ps->arr = (Seqlist*)malloc(sizeof(SLDataType) * 4);
+	ps->length = -1;
+	ps->size = 4;
+
 }
-void SeqListDestory(SeqList* ps)//销毁
+void Seqlistdestory(Seqlist* ps)
 {
-	free(ps->Array);
+	ps->length = 0;
+	ps->size = 0;
+	free(ps);
 	ps = NULL;
-	ps->Capacity = ps->Size = 0;
 }
-void SeqListPrint(SeqList* ps)//打印
+void Seqlistprint(Seqlist* ps)
 {
-	assert(ps);
-	for (int i = 0; i < ps->Size; ++i)
+	for (int i = 0; i <= ps->length; i++)
 	{
-		printf("%d ", ps->Array[i]);
+		printf("%d ", ps->arr[i]);
 	}
 	printf("\n");
 
+}
+void SeqlistisFull(Seqlist* ps)
+{
+	assert(ps);
+	if (ps->length + 1 == ps->size)
+	{
+		ps->size *= 2;
+		ps->arr = realloc(ps->arr, sizeof(SLDataType)*ps->size);
+	}
+
 
 }
-void SeqListCheckCapacity(SeqList* ps)//检查容量是否满了
+void SeqlistpushBack(Seqlist* ps, SLDataType x)
 {
-	if (ps->Size == ps->Capacity)
+	assert(ps);
+	SeqlistisFull(ps);
+	ps->arr[ps->length + 1] = x;
+	ps->length += 1;
+}
+void SeqlistpopBack(Seqlist* ps)
+{
+	assert(ps);
+	assert(ps->length);
+	ps->length -= 1;
+}
+void SeqlistpushFront(Seqlist* ps, SLDataType x)
+{
+	assert(ps);
+	SeqlistisFull(ps);
+	for (int i = ps->length; i >= 0; i--)
 	{
-		ps->Capacity *= 2;
-		ps->Array = (SLDataType*)realloc(ps->Array, sizeof(SLDataType)*ps->Capacity);
-		if (ps->Array == NULL)//扩容失败
+		ps->arr[i + 1] = ps->arr[i];
+	}
+	ps->arr[0] = x;
+	ps->length += 1;
+
+}
+void SeqlistpopFront(Seqlist*ps)
+{
+	assert(ps);
+	assert(ps->length);
+	for (int i = 0; i < ps->length; i++)
+	{
+		ps->arr[i] = ps->arr[i + 1];
+	}
+	ps->length -= 1;
+}
+void SeqlistFind(Seqlist* ps, SLDataType x)
+{
+	assert(ps);
+	assert(ps->length);
+	int i = 0;
+	for (i = 0; i <= ps->length; i++)
+	{
+		if (ps->arr[i] == x)
 		{
-			printf("扩容失败\n");
-			exit(-1);
+			printf("元素%d的下标为%d", ps->arr[i], i);
+			break;
 		}
 	}
-	
-
+	if (i > ps->length)
+	{
+		printf("未找到");
+	}
 }
-
-void SeqListPushBack(SeqList* ps, SLDataType x)//尾插
-{
-	/*尾插就是size位置上的插入
-	assert(ps);//警告，指针为空
-	SeqListCheckCapacity(ps);//满了就扩容
-	ps->Array[ps->Size] = x;//size表示有效个数，但同时是下一个元素的下标
-	ps->Size++;//元素加1
-	*/
-	SeqListInsert(ps,ps->Size, x);
-}
-void SeqListPopBack(SeqList* ps)//尾删除
+void Seqlistinsert(Seqlist* ps, int pos, SLDataType x)
 {
 	assert(ps);
-	ps->Size--;
-
-}
-void SeqListPushFront(SeqList* ps, SLDataType x)//头插
-{
-	/*头插是0位置上的插入
-	assert(ps);
-	SeqListCheckCapacity(ps);//满了就扩容
-	for (int i = ps->Size-1; i >= 0; i--)//头插法：从最后一个元素开始，依次向后移，把0的位置空出来
+	SeqlistisFull(ps);
+	for (int i = ps->length; i >= pos-1; i--)
 	{
-		ps->Array[i+1] = ps->Array[i];
+		ps->arr[i + 1] = ps->arr[i];
 	}
-	ps->Array[0] = x;
-	ps->Size++;
-	*/
-	SeqListInsert(ps, 0, x);
-
+	ps->arr[pos-1] = x;
+	ps->length += 1;
 }
-void SeqListPopFront(SeqList* ps)//头删
-{
-	/*头删是0位置的删除
-	assert(ps);
-	for (int i = 0; i < ps->Size; i++)
-	{
-		ps->Array[i] = ps->Array[i + 1];//删除时直接覆盖即可
-	}
-	ps->Size--;
-	*/
-	SeqListErase(ps, 0);
-	
-
-}
-void SeqListInsert(SeqList* ps, int pos, SLDataType x)//任意位置插入
+void Seqlistdelete(Seqlist* ps, int pos)
 {
 	assert(ps);
-	assert(pos <= ps->Size && pos>= 0);//插入位置有误
-	SeqListCheckCapacity(ps);
-	for (int i = ps->Size - 1; i >= pos; i--)//从插入位置以后依次向后挪动
+	assert(ps->length);
+	for (int i = pos - 1; i < ps->length; i++)
 	{
-		ps->Array[i + 1] = ps->Array[i];
+		ps->arr[i] = ps->arr[i + 1];
 	}
-	ps->Array[pos] = x;
-	ps->Size++;
+	ps->length -= 1;
 
-}
-void SeqListErase(SeqList* ps, int pos)//任意位置删除
-{
-	assert(ps);
-	assert(pos < ps->Size && pos >= 0);//删除位置有误
-	for (int i = pos; i < ps->Size; i++)
-	{
-		ps->Array[i] = ps->Array[i + 1];
-	}
-	ps->Size--;
-}
-
-int  SeqListFind(SeqList* ps, SLDataType x)//顺序查找法
-{
-	assert(ps);
-	int i = 0;
-	while (i<ps->Size)
-	{
-		if (ps->Array[i] == x)
-			return i;
-		++i;
-	}
-	return -1;
-
-
-}
-int  SeqListFindvalue_Bind(SeqList* ps, int pos)//二分查找法
-{
-	int low = 0;
-	int high = ps->Size - 1;
-	while (low < high)
-	{
-		int mid = (low + high) / 2;
-		if (pos < ps->Array[mid])
-			high = mid - 1;
-		else if (pos > ps->Array[mid])
-			low = mid + 1;
-		else
-			return mid;
-	}
 }
