@@ -7,7 +7,7 @@ typedef struct
 	int data[maxSize];
 	int length;
 }Sqlist;
-//L1和L2为有序顺序表，按他们的顺序将其归并有序顺序表L
+//L1和L2为有序顺序表，按他们的顺序将其归并有序顺序表
 void mergearray(Sqlist L1, Sqlist L2, Sqlist L)
 {
 	int i = 0;//用来跟随L1的下标
